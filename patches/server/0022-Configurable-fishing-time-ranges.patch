@@ -5,7 +5,7 @@ Subject: [PATCH] Configurable fishing time ranges
 
 
 diff --git a/src/main/java/net/minecraft/world/entity/projectile/FishingHook.java b/src/main/java/net/minecraft/world/entity/projectile/FishingHook.java
-index b202a522606b9335ebab1c21a2c50fb5f7e9791b..9a753ffd35403358df07408ffe85197ee3318f39 100644
+index e5d9902331e3c4e461e855290a95980b41f5efe2..af6829c25fcd186adc3575d50cab6d46db9a2fac 100644
 --- a/src/main/java/net/minecraft/world/entity/projectile/FishingHook.java
 +++ b/src/main/java/net/minecraft/world/entity/projectile/FishingHook.java
 @@ -92,6 +92,10 @@ public class FishingHook extends Projectile {

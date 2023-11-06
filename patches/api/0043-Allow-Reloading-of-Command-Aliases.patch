@@ -6,10 +6,10 @@ Subject: [PATCH] Allow Reloading of Command Aliases
 Reload the aliases stored in commands.yml
 
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 6311d7ef36b3c6922c73695c353c561c507f2128..a314ff1363cb527fa7e1b366f9191939e9c7ca6e 100644
+index 9003a603b6bf82a7b6f04fa027cdc889cf7c274f..297f7befdac5c45efb1c9f432c49696814f513ab 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2134,6 +2134,15 @@ public final class Bukkit {
+@@ -2207,6 +2207,15 @@ public final class Bukkit {
      public static void reloadPermissions() {
          server.reloadPermissions();
      }
@@ -26,10 +26,10 @@ index 6311d7ef36b3c6922c73695c353c561c507f2128..a314ff1363cb527fa7e1b366f9191939
  
      @NotNull
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 994f494fe7cace5c88738858def4051788391a3c..610475aff60b7f19c4bedb932985c736fb890684 100644
+index 45e628f6c47945ce008d8436e3b13325bb5084d8..d80e9a6770c565c2cdb6bea6ad14969a6a6d0dad 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -1878,4 +1878,6 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -1945,4 +1945,6 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      // Spigot end
  
      void reloadPermissions(); // Paper

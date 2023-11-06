@@ -9,10 +9,10 @@ In Offline Mode, will return an Offline UUID
 This is a more performant way to obtain a UUID for a name than loading an OfflinePlayer
 
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 008a960a63cf3efe87aab1e237c3b87056f58302..d0bc1943f6a3a17fe890b018c2b99f815a5c9b61 100644
+index f5358612884aae8d0686f3ff98ccee567a746f16..a6f9336f27cb4a7aed0c01cde417d2287e393929 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -657,6 +657,20 @@ public final class Bukkit {
+@@ -688,6 +688,20 @@ public final class Bukkit {
          return server.getPlayer(id);
      }
  
@@ -34,10 +34,10 @@ index 008a960a63cf3efe87aab1e237c3b87056f58302..d0bc1943f6a3a17fe890b018c2b99f81
       * Gets the plugin manager for interfacing with plugins.
       *
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 2eaf31f1053787b39184dfa8ac6df87d93b0a7b7..f5223be2d011b56a6138257bcae3ea2335a5940b 100644
+index 064edd612885b2ea4b35001a864503b568c53987..dfbccef8dd67195d588112989a9ffecb712a9fe9 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -559,6 +559,18 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -592,6 +592,18 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @Nullable
      public Player getPlayer(@NotNull UUID id);
  

@@ -8,10 +8,10 @@ Add per player no-tick, tick, and send view distances.
 Also add send/no-tick view distance to World.
 
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 1a71d628d9f593157d92f0c9fda9d3214c138352..cc4e72335d8c66c8081ce64149ce3ac377e03323 100644
+index 1403d28bf9124e3c4cd741dfda06400318e8a0a0..3559115d09b57acf5c2853b811862e5131f2a625 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -2661,6 +2661,62 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -2663,6 +2663,62 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      int getSimulationDistance();
      // Spigot end
  
@@ -75,10 +75,10 @@ index 1a71d628d9f593157d92f0c9fda9d3214c138352..cc4e72335d8c66c8081ce64149ce3ac3
      public class Spigot {
  
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index aaca12b0fd009f605ce8120f0cbe0a1049771cf5..e543a0cc1bd7e4d87038c06cad0f5bde7c64f1b9 100644
+index f21183cd5491b09e4543839252aed1ea10ddf849..f9b9e0269b3a9402c5be1c1c2007956415ff708a 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1997,6 +1997,78 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2212,6 +2212,78 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       * @param affects Whether the player can affect mob spawning
       */
      public void setAffectsSpawning(boolean affects);

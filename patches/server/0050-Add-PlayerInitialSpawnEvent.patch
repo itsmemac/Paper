@@ -12,10 +12,10 @@ improve setPosition to use raw
 public net.minecraft.world.entity.Entity setRot(FF)V
 
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index d9f9aba11aa4ee40a3bfd09b4ad065b8ddd2d31e..57281d4a3c6b187d13ba5cadd46f494df411e7ba 100644
+index 5ae47b3449df7a83a5c22a266f7b9e4ea681a492..fa7aad589275598eaf3cae86a4e1e47d40b52f05 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
-@@ -233,7 +233,7 @@ public abstract class PlayerList {
+@@ -228,7 +228,7 @@ public abstract class PlayerList {
  
          // Spigot start - spawn location event
          Player spawnPlayer = player.getBukkitEntity();
@@ -24,10 +24,10 @@ index d9f9aba11aa4ee40a3bfd09b4ad065b8ddd2d31e..57281d4a3c6b187d13ba5cadd46f494d
          this.cserver.getPluginManager().callEvent(ev);
  
          Location loc = ev.getSpawnLocation();
-@@ -241,7 +241,10 @@ public abstract class PlayerList {
+@@ -236,7 +236,10 @@ public abstract class PlayerList {
  
          player.spawnIn(worldserver1);
-         player.gameMode.setLevel((ServerLevel) player.level);
+         player.gameMode.setLevel((ServerLevel) player.level());
 -        player.absMoveTo(loc.getX(), loc.getY(), loc.getZ(), loc.getYaw(), loc.getPitch());
 +        // Paper start - set raw so we aren't fully joined to the world (not added to chunk or world)
 +        player.setPosRaw(loc.getX(), loc.getY(), loc.getZ());

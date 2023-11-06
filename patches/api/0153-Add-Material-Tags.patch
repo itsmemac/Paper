@@ -7,7 +7,8 @@ This adds a bunch of useful and missing Tags to be able to identify items that
 are related to each other by a trait.
 
 Co-authored-by: Jake Potrebic <jake.m.potrebic@gmail.com>
-Co-authored by: Lena Kolb <lenakolb2204@gmail.com>
+Co-authored-by: Lena Kolb <lenakolb2204@gmail.com>
+Co-authored-by: Layla Silbernberg <livsilbernberg@gmail.com>
 
 diff --git a/src/main/java/com/destroystokyo/paper/MaterialSetTag.java b/src/main/java/com/destroystokyo/paper/MaterialSetTag.java
 new file mode 100644
@@ -114,10 +115,10 @@ index 0000000000000000000000000000000000000000..a02a02aa0c87e0f0ed9e509e4dcab015
 +}
 diff --git a/src/main/java/com/destroystokyo/paper/MaterialTags.java b/src/main/java/com/destroystokyo/paper/MaterialTags.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..7836ca97d2aa3a9c08e2ce69936bd801c857ad85
+index 0000000000000000000000000000000000000000..f59151cec84fc0e300a8d759c6d74a804cbd047f
 --- /dev/null
 +++ b/src/main/java/com/destroystokyo/paper/MaterialTags.java
-@@ -0,0 +1,705 @@
+@@ -0,0 +1,708 @@
 +/*
 + * Copyright (c) 2018 Daniel Ennis (Aikar) MIT License
 + *
@@ -429,7 +430,6 @@ index 0000000000000000000000000000000000000000..7836ca97d2aa3a9c08e2ce69936bd801
 +    public static final MaterialSetTag SKULLS = new MaterialSetTag(keyFor("skulls"))
 +        .endsWith("_HEAD")
 +        .endsWith("_SKULL")
-+        .not(Material.POTTERY_SHARD_SKULL)
 +        .not(Material.PISTON_HEAD)
 +        .ensureSize("SKULLS", 14).lock();
 +
@@ -683,8 +683,12 @@ index 0000000000000000000000000000000000000000..7836ca97d2aa3a9c08e2ce69936bd801
 +     */
 +    public static final MaterialSetTag ENCHANTABLE = new MaterialSetTag(keyFor("enchantable"))
 +        .add(PICKAXES, SWORDS, SHOVELS, AXES, HOES, HELMETS, CHEST_EQUIPPABLE, LEGGINGS, BOOTS, BOWS)
-+        .add(Material.TRIDENT, Material.SHIELD, Material.FISHING_ROD, Material.SHEARS, Material.FLINT_AND_STEEL, Material.CARROT_ON_A_STICK, Material.WARPED_FUNGUS_ON_A_STICK)
-+        .ensureSize("ENCHANTABLE", 65).lock();
++        .add(Material.TRIDENT, Material.SHIELD, Material.FISHING_ROD, Material.SHEARS,
++            Material.FLINT_AND_STEEL, Material.CARROT_ON_A_STICK, Material.WARPED_FUNGUS_ON_A_STICK,
++            Material.BRUSH, Material.CARVED_PUMPKIN, Material.COMPASS, Material.SKELETON_SKULL,
++            Material.WITHER_SKELETON_SKULL, Material.PLAYER_HEAD, Material.ZOMBIE_HEAD,
++            Material.CREEPER_HEAD, Material.DRAGON_HEAD, Material.PIGLIN_HEAD)
++        .ensureSize("ENCHANTABLE", 75).lock();
 +
 +    /**
 +     * Covers the variants of raw ores.
@@ -1060,7 +1064,7 @@ index 0000000000000000000000000000000000000000..c89c4619aaf388197834d98eb95af2f1
 +}
 diff --git a/src/main/java/io/papermc/paper/tag/EntityTags.java b/src/main/java/io/papermc/paper/tag/EntityTags.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..d7eb49a05c3f0cacf285f8995433c5d5e988de0f
+index 0000000000000000000000000000000000000000..5376e51adf5af15572b0d760b17f2de6d3f24a9b
 --- /dev/null
 +++ b/src/main/java/io/papermc/paper/tag/EntityTags.java
 @@ -0,0 +1,54 @@
@@ -1083,7 +1087,7 @@ index 0000000000000000000000000000000000000000..d7eb49a05c3f0cacf285f8995433c5d5
 +
 +    /**
 +     * Covers undead mobs
-+     * @see <a href="https://minecraft.gamepedia.com/Mob#Undead_mobs">https://minecraft.gamepedia.com/Mob#Undead_mobs</a>
++     * @see <a href="https://minecraft.wiki/wiki/Mob#Undead_mobs">https://minecraft.wiki/wiki/Mob#Undead_mobs</a>
 +     */
 +    public static final EntitySetTag UNDEADS = new EntitySetTag(keyFor("undeads"))
 +        .add(DROWNED, HUSK, PHANTOM, SKELETON, SKELETON_HORSE, STRAY, WITHER, WITHER_SKELETON, ZOGLIN, ZOMBIE, ZOMBIE_HORSE, ZOMBIE_VILLAGER, ZOMBIFIED_PIGLIN)
@@ -1112,17 +1116,17 @@ index 0000000000000000000000000000000000000000..d7eb49a05c3f0cacf285f8995433c5d5
 +
 +    /**
 +     * Covers all water based mobs
-+     * @see <a href="https://minecraft.gamepedia.com/Mob#Water-based_mobs">https://minecraft.gamepedia.com/Mob#Water-based_mobs</a>
++     * @see <a href="https://minecraft.wiki/wiki/Mob#Aquatic_mobs">https://minecraft.wiki/wiki/Mob#Aquatic_mobs</a>
 +     */
 +    public static final EntitySetTag WATER_BASED = new EntitySetTag(keyFor("water_based"))
 +        .add(AXOLOTL, DOLPHIN, SQUID, GLOW_SQUID, GUARDIAN, ELDER_GUARDIAN, TURTLE, COD, SALMON, PUFFERFISH, TROPICAL_FISH)
 +        .ensureSize("WATER_BASED", 11).lock();
 +}
 diff --git a/src/main/java/org/bukkit/Tag.java b/src/main/java/org/bukkit/Tag.java
-index 2d25228016fc9a9a1ba87f58865ec8ee65115461..28e5691e265b94eb9855f87d05f84e8ff963c566 100644
+index 02f75db7ac55f792e84a08138e89657a3e226ff5..69462a0679c255acee2adb84f590523d3fc3c9aa 100644
 --- a/src/main/java/org/bukkit/Tag.java
 +++ b/src/main/java/org/bukkit/Tag.java
-@@ -12,6 +12,10 @@ import org.jetbrains.annotations.NotNull;
+@@ -11,6 +11,10 @@ import org.jetbrains.annotations.NotNull;
   * Note that whilst all tags defined within this interface must be present in
   * implementations, their existence is not guaranteed across future versions.
   *
@@ -1135,10 +1139,10 @@ index 2d25228016fc9a9a1ba87f58865ec8ee65115461..28e5691e265b94eb9855f87d05f84e8f
  public interface Tag<T extends Keyed> extends Keyed {
 diff --git a/src/test/java/com/destroystokyo/paper/MaterialTagsTest.java b/src/test/java/com/destroystokyo/paper/MaterialTagsTest.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..e541f29e983d8dcaca91de9ee1459d587226b4c3
+index 0000000000000000000000000000000000000000..82ee9a486d1c3deec6e529b1cb12ecc2c6a5862e
 --- /dev/null
 +++ b/src/test/java/com/destroystokyo/paper/MaterialTagsTest.java
-@@ -0,0 +1,65 @@
+@@ -0,0 +1,58 @@
 +/*
 + * Copyright (c) 2018 Daniel Ennis (Aikar) MIT License
 + */
@@ -1147,25 +1151,18 @@ index 0000000000000000000000000000000000000000..e541f29e983d8dcaca91de9ee1459d58
 +
 +import io.papermc.paper.tag.BaseTag;
 +import io.papermc.paper.tag.EntityTags;
-+import io.papermc.paper.testing.TestServer;
-+import org.bukkit.Bukkit;
-+import org.junit.Before;
-+import org.junit.Test;
-+
 +import java.lang.reflect.Field;
 +import java.lang.reflect.Modifier;
 +import java.util.HashSet;
 +import java.util.Set;
 +import java.util.logging.Level;
++import org.bukkit.Bukkit;
++import org.bukkit.support.AbstractTestingBase;
++import org.junit.jupiter.api.Test;
 +
-+import static org.junit.Assert.assertTrue;
++import static org.junit.jupiter.api.Assertions.assertTrue;
 +
-+public class MaterialTagsTest {
-+
-+    @Before
-+    public void before() {
-+        TestServer.setup();
-+    }
++public class MaterialTagsTest extends AbstractTestingBase {
 +
 +    @Test
 +    public void testInitialize() {
@@ -1186,7 +1183,7 @@ index 0000000000000000000000000000000000000000..e541f29e983d8dcaca91de9ee1459d58
 +
 +    private static void testLocked(Class<?> clazz) {
 +        for (BaseTag<?, ?> tag : collectTags(clazz)) {
-+            assertTrue("Tag " + tag.key() + " is not locked", tag.isLocked());
++            assertTrue(tag.isLocked(), "Tag " + tag.key() + " is not locked");
 +        }
 +    }
 +
@@ -1206,24 +1203,23 @@ index 0000000000000000000000000000000000000000..e541f29e983d8dcaca91de9ee1459d58
 +}
 diff --git a/src/test/java/io/papermc/paper/EntityTagsTest.java b/src/test/java/io/papermc/paper/EntityTagsTest.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..3caf03d8e50cd2180e9aac2dddeaa3afd0bf7438
+index 0000000000000000000000000000000000000000..91d70cc703192b5a3a48211ee0dadd2e4260ec00
 --- /dev/null
 +++ b/src/test/java/io/papermc/paper/EntityTagsTest.java
-@@ -0,0 +1,22 @@
+@@ -0,0 +1,21 @@
 +package io.papermc.paper;
 +
 +import io.papermc.paper.tag.EntityTags;
-+import io.papermc.paper.testing.TestServer;
 +import java.util.logging.Level;
 +import org.bukkit.Bukkit;
-+import org.junit.Test;
++import org.bukkit.support.AbstractTestingBase;
++import org.junit.jupiter.api.Test;
 +
-+public class EntityTagsTest {
++public class EntityTagsTest extends AbstractTestingBase {
 +
 +    @Test
 +    public void testInitialize() {
 +        try {
-+            TestServer.setup();
 +            EntityTags.HORSES.getValues();
 +            assert true;
 +        } catch (Throwable e) {
